@@ -1,5 +1,3 @@
-import numpy as np
-import pandas as pd 
 from math import isnan
 from main import GROUP_COUNT, generate_cities,count,REPS_NUM
 

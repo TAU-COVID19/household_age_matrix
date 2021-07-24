@@ -14,7 +14,7 @@ from world.population_generation import generate_city
 #const to save the amount of age groups we have 0..4,5,,9 and so on 
 GROUP_COUNT = 16
 #How many times we generate the city and doing average upon
-REPS_NUM = 3
+REPS_NUM = 50
 
 def count(city_arrays):
     # convert each person to their age group,
@@ -129,8 +129,8 @@ def save(avg_mat,sem_mat,city_name:str)->None:
     avgDF = pd.DataFrame(avg_mat,columns= catgories,index= catgories)
     semDF = pd.DataFrame(sem_mat,columns= catgories,index= catgories)
 
-    avgDF.to_csv(os.path.join(os.path.dirname(__file__),"outputs",city_name+"_avg.csv"))
-    semDF.to_csv(os.path.join(os.path.dirname(__file__),"outputs",city_name+"_sem.csv"))
+    avgDF.to_csv(os.path.join(os.path.dirname(__file__),"..","outputs",city_name+"_avg.csv"))
+    semDF.to_csv(os.path.join(os.path.dirname(__file__),"..","outputs",city_name+"_sem.csv"))
     
 
 def main():
