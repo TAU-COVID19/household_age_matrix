@@ -1,5 +1,6 @@
-from math import isnan
 from main import GROUP_COUNT, generate_cities,count,REPS_NUM
+from math import isnan
+
 
 def helper(res,expected):
     for i in range(GROUP_COUNT):

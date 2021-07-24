@@ -1,5 +1,6 @@
 from datetime import date
 import json 
+import matplotlib.pyplot as plt
 import numpy as np
 import os
 import pandas as pd 
@@ -131,7 +132,22 @@ def save(avg_mat,sem_mat,city_name:str)->None:
 
     avgDF.to_csv(os.path.join(os.path.dirname(__file__),"..","outputs",city_name+"_avg.csv"))
     semDF.to_csv(os.path.join(os.path.dirname(__file__),"..","outputs",city_name+"_sem.csv"))
+    Plot3d(avgDF,city_name= city_name)
     
+def Plot3d(expected,city_name):
+        
+    _x = np.arange(GROUP_COUNT)
+    _y = np.arange(GROUP_COUNT)
+    _xx, _yy = np.meshgrid(_x, _y)
+    x, y = _xx.ravel(), _yy.ravel()
+    fig = plt.figure(figsize=(8, 8))
+    ax1 = fig.add_subplot(111, projection='3d')
+    top = np.array(expected).flatten()
+    bottom = np.zeros_like(top)
+    width = depth = 1
+    ax1.bar3d(x, y, bottom, width, depth, top, shade=True)
+    ax1.set_title('Shaded')
+    plt.savefig(os.path.join(os.path.dirname(__file__),"..","outputs",city_name+"_graph.png"))
 
 def main():
     city_name = 'Atlit'
@@ -139,7 +155,7 @@ def main():
     avg_mat = calc_avg(cities)
     sem_mat = calc_sem(cities)
     save(avg_mat=avg_mat,sem_mat=sem_mat,city_name = city_name)
-
+    
 
 if __name__ =="__main__":
     main()
