@@ -127,12 +127,15 @@ def save(avg_mat,sem_mat,city_name:str)->None:
     #Print results 
     catgories = ["0..4","5..9","10..14","15..19","20..24","25..29","30..34", \
         "35..39","40..44","45..49","50..54","55..59","60..64","65..69","70..74","75+"]
-    avgDF = pd.DataFrame(avg_mat,columns= catgories,index= catgories)
-    semDF = pd.DataFrame(sem_mat,columns= catgories,index= catgories)
+    
+    if avg_mat is not None: 
+        avgDF = pd.DataFrame(avg_mat,columns= catgories,index= catgories)
+        avgDF.to_csv(os.path.join(os.path.dirname(__file__),"..","outputs",city_name+"_avg.csv"))
+        Plot3d(avgDF,city_name= city_name)
 
-    avgDF.to_csv(os.path.join(os.path.dirname(__file__),"..","outputs",city_name+"_avg.csv"))
-    semDF.to_csv(os.path.join(os.path.dirname(__file__),"..","outputs",city_name+"_sem.csv"))
-    Plot3d(avgDF,city_name= city_name)
+    if sem_mat is not None: 
+        semDF = pd.DataFrame(sem_mat,columns= catgories,index= catgories)
+        semDF.to_csv(os.path.join(os.path.dirname(__file__),"..","outputs",city_name+"_sem.csv"))
     
 def Plot3d(expected,city_name):
         
