@@ -149,7 +149,7 @@ def Plot3d(expected,city_name):
     bottom = np.zeros_like(top)
     width = depth = 1
     ax1.bar3d(x, y, bottom, width, depth, top, shade=True)
-    ax1.set_title('Shaded')
+    ax1.set_title(city_name)
     plt.savefig(os.path.join(os.path.dirname(__file__),"..","outputs",city_name+"_graph.png"))
 
 def main():
