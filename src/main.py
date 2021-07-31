@@ -81,7 +81,7 @@ def generate_cities(city_name:str):
         cityArr = []
         tmp_city = pop.get_city_by_name(city_name)
         my_world = generate_city(city = tmp_city,
-                            is_smart_household_generation=False,
+                            is_smart_household_generation=True,
                             internal_workplaces=True,
                             scaling=1.0,
                             verbosity=False,
